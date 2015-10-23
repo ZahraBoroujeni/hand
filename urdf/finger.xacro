@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+<xacro:macro name="model_finger" params="name parent L_F1 L_F2 L_F3 L_F4 L_F5 AbName f1 f2 f3">
+
+  <link name="${name}_virtual">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry name="${name}_virtual">
+        <cylinder radius="0.001" length="0.0"/>
+      </geometry>
+      <material name="Cream" />
+    </visual>
+  </link>
+
+  <link name="${name}_ffproximal">
+    <inertial>
+      <mass value="0.008" />
+      <origin xyz="0 0 0" /> 
+      <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0" izz="1.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry name="${name}_ffproximal_geom">
+        <mesh filename="${f1}"/>
+      </geometry>
+      <material name="Cream" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry name="${name}_ffproximal_collision_geom">
+        <box size="0.05 0.05 0.10" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="${name}_ffmiddle">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.008" />
+      <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"
+      izz="1.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry name="${name}_ffmiddle_geom">
+        <mesh filename="${f2}"/>
+      </geometry>
+      <material name="Cream" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry name="${name}_ffmiddle_collision_geom">
+        <box size="0.05 0.05 0.10" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="${name}_ffdistal">
+    <inertial>
+      <mass value="0.008" />
+      <origin xyz="0 0 0" /> 
+      <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"
+      izz="1.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry name="${name}_ffdistal_geom">
+         <mesh filename="${f3}"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0 " />
+      <geometry name="${name}_ffdistal_collision_geom">
+        <box size="0.05 0.05 0.10" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="${name}_fffingertip">
+  </link>
+  
+  <joint name="G_${AbName}Ab" type="revolute">
+    <parent link="${parent}"/>
+    <child link="${name}_virtual"/>   
+    <origin xyz="${L_F5} 0 ${L_F1}" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-0.261666667" upper="0.261666667" effort="10" velocity="1.0"/>
+  </joint>
+
+  <joint name="G_${name}MPJ" type="revolute">
+    <parent link="${name}_virtual"/>
+    <child link="${name}_ffproximal"/>   
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="1.57" effort="10" velocity="1.0"/>
+  </joint>
+
+  <joint name="G_${name}PIJ" type="revolute">
+    <parent link="${name}_ffproximal"/>
+    <child link="${name}_ffmiddle"/>
+    <origin xyz="0 0 ${L_F2}" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="2" effort="10" velocity="1.0"/>
+  </joint>
+
+  <joint name="G_${name}DIJ" type="revolute">
+    <parent link="${name}_ffmiddle"/>
+    <child link="${name}_ffdistal"/>   
+    <origin xyz="0 0 ${L_F3}" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit lower="0" upper="2" effort="10" velocity="1.0"/>
+    <mimic joint="G_${name}PIJ" multiplier="1" />
+  </joint>
+
+  <joint name="G_${name}Fingertip" type="fixed">
+    <parent link="${name}_ffdistal"/>
+    <child link="${name}_fffingertip"/>   
+    <origin xyz="0 0 ${L_F4}" rpy="0 0 0" />
+  </joint>
+
+</xacro:macro>
+</robot>
+
+
+

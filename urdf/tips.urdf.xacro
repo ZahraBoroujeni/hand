@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hands">
+  <xacro:include filename="$(find hand)/urdf/fingertips.urdf.xacro"/>
+  <xacro:include filename="$(find hand)/urdf/materials.urdf"/>
+  <xacro:model_fingertips name="thumb" parent="world" color="SickBlue" f3="file://$(find hand)/mesh/hand/thumb3.stl">
+  </xacro:model_fingertips>
+</robot>

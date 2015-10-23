@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <macro name="model_fingertips" params="name parent color f3">
+    <link name="${name}">
+      <visual>
+	      <geometry>
+         <mesh filename="${f3}"/>
+	      </geometry>
+        <material name="${color}" />
+      </visual>
+    </link>
+  </macro>
+</robot>

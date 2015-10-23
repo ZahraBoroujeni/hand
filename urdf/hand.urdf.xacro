@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hand">
+  <xacro:include filename="$(find hand)/urdf/thimble.urdf.xacro"/>
+  <xacro:include filename="$(find hand)/urdf/wrist_bracelet.urdf.xacro"/>
+  <xacro:include filename="$(find hand)/urdf/materials.urdf"/>
+  <xacro:include filename="$(find hand)/urdf/finger.xacro"/>
+  <xacro:include filename="$(find hand)/urdf/wrist.xacro"/>
+  <xacro:include filename="$(find hand)/urdf/thumb.xacro"/>
+
+  <link name="hand"/>
+  <xacro:model_wrist parent="hand">
+  </xacro:model_wrist>
+
+  <xacro:model_thumb  name="Thumb" parent="palm" AbName="Thumb" 
+  f1="file://$(find hand)/mesh/hand/thumb1.stl"
+  f2="file://$(find hand)/mesh/hand/thumb2.stl"
+  f3="file://$(find hand)/mesh/hand/finger22.stl"
+  L_F1="0.01" L_F2="0.05" L_F3="0.035" L_F4="0.02" L_F5="0.035">
+  </xacro:model_thumb>
+<!--ale  -->
+  <xacro:model_finger name="Index" parent="palm" AbName="MiddleIndex"
+  f1="file://$(find hand)/mesh/hand/finger21.stl"
+  f2="file://$(find hand)/mesh/hand/finger22.stl"
+  f3="file://$(find hand)/mesh/hand/finger23.stl"
+  L_F1="0.08" L_F2="0.05" L_F3="0.025" L_F4="0.018" L_F5="0.025">
+  </xacro:model_finger>
+ <!--ale:-->
+  <xacro:model_finger name="Middle" parent="palm" AbName="Middle"
+  f1="file://$(find hand)/mesh/hand/finger31.stl"
+  f2="file://$(find hand)/mesh/hand/finger32.stl"
+  f3="file://$(find hand)/mesh/hand/finger33.stl"
+  L_F1="0.08" L_F2="0.05" L_F3="0.030" L_F4="0.02" L_F5="0.005">
+  </xacro:model_finger>
+ <!--ale:"-->
+  <xacro:model_finger name="Ring" parent="palm" AbName="RingMiddle"
+  f1="file://$(find hand)/mesh/hand/finger41.stl"
+  f2="file://$(find hand)/mesh/hand/finger42.stl"
+  f3="file://$(find hand)/mesh/hand/finger43.stl"
+  L_F1="0.07" L_F2="0.05" L_F3="0.025" L_F4="0.02" L_F5="-0.015">
+  </xacro:model_finger>
+
+  <xacro:model_finger name="Pinkie" parent="palm" AbName="PinkieRing"
+  f1="file://$(find hand)/mesh/hand/finger51.stl"
+  f2="file://$(find hand)/mesh/hand/finger52.stl"
+  f3="file://$(find hand)/mesh/hand/finger53.stl"
+  L_F1="0.06" L_F2="0.033" L_F3="0.02" L_F4="0.02" L_F5="-0.031">
+  </xacro:model_finger>
+ 
+<!--
+ <xacro:model_thimble name="thimble1" parent="Thumb" color="Green">
+  </xacro:model_thimble>
+
+  <xacro:model_thimble name="thimble3" parent="Index" color="Green">
+  </xacro:model_thimble>
+
+  <xacro:model_thimble name="thimble4" parent="Middle" color="Green">
+  </xacro:model_thimble>
+ 
+  <xacro:model_thimble name="thimble1" parent="Ring" color="Green">
+  </xacro:model_thimble>
+
+  <xacro:model_thimble name="thimble5" parent="Pinkie" color="Green">
+  </xacro:model_thimble>
+-->
+  
+</robot>

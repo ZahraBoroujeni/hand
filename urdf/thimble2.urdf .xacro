@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="thimble2">
+  <xacro:include filename="$(find hand)/urdf/thimblefloat.urdf.xacro"/>
+  <xacro:include filename="$(find hand)/urdf/materials.urdf"/>
+  <xacro:model_thimble name="thimble2" parent="world" color="Green">
+  </xacro:model_thimble>
+</robot>

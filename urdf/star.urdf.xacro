@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <macro name="model_star" params="name parent color">
+
+    <link name="${name}">
+      <visual>
+	      <geometry>
+	       <mesh filename="file://$(find hand)/mesh/star.stl"/>
+	      </geometry>
+        <material name="${color}" />
+      </visual>
+    </link>
+    
+  </macro>
+
+
+</robot>
+
