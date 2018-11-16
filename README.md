@@ -1,4 +1,4 @@
 hand
 =====
-Useing xacro urdf, creatt a hand model!
+Using xacro urdf, create a hand model!
 # hand
